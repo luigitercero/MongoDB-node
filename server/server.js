@@ -1,15 +1,38 @@
+require('./config/config');
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 
 app.get('/usuario', function (req, res) {
     res.json('getUsuario');
 })
 
 app.post('/usuario', function (req, res) {
-    res.json('post Usuario');
+    let body = req.body;
+    if (body == undefined) {
+        res.status(400).json({
+            ok: false,
+            mensaje: 'error el nombre es necesario'
+        })
+    } else {
+        res.json({ body });
+
+    }
+
 })
-app.put('/usuario', function (req, res) {
-    res.json('put Usuario');
+app.put('/usuario/:id', function (req, res) {
+    let id = req.params.id;
+    res.json(
+        {
+            id
+        }
+    );
 })
 app.delete('/usuario', function (req, res) {
     res.json('delet Usuario');
@@ -20,6 +43,6 @@ app.get('/', function (req, res) {
     res.json('Hello World')
 })
 
-app.listen(3000, () => {
-    console.log("escuchando puerto 300");
+app.listen(process.env.PORT, () => {
+    console.log(`escuchando puerto ${process.env.PORT}`);
 })
