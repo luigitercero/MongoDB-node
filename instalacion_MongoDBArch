@@ -1,0 +1,9 @@
+
+Sudo pacman -Sy mongodb
+sudo mongod –config /etc/mongodb.conf
+sudo systemctl start mongodb
+yaourt robo3t
+agregar local host
+con mongod se puede ver en que puerto esta corriendo mongodb
+mongod
+npm install express --save
