@@ -8,3 +8,5 @@ con mongod se puede ver en que puerto esta corriendo mongodb
 mongod
 npm install express --save
 npm install bodyparser 
+
+para heroku se dene configurar package json npm start
